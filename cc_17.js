@@ -58,3 +58,28 @@ salesRep1.addClient(customer2);
 // Console Log
 console.log(`Sales rep: ${salesRep1.name}, Client: ${customer1.name}, Total spent: $${salesRep1.getClientTotal(customer1.name)}`);
 console.log(`Sales rep: ${salesRep1.name}, Client: ${customer2.name}, Total spent: $${salesRep1.getClientTotal(customer2.name)}`);
+
+//Task 3
+class VIPCustomer extends Customer {
+    constructor (name, email, vipLevel) {
+        super(name, email);
+        this.vipLevel = vipLevel;
+        this.purchaseHistory = [];
+    }
+    getTotalSpent() {
+        const totalSpent = super.totalSpent();
+        return totalSpent + (totalSpent * 0.10);//10% Bonus
+    }
+    details () {
+         return `VIP Customer Name: ${this.name}, VIP Email: ${this.email}, VIP Level: ${this.vipLevel}, Total Spent: $${this.getTotalSpent()}`
+    }
+}
+//VIP Customer
+const vipCustomer1 = new VIPCustomer("Thomas Jefferson", "third_president@email.com", "Platinum");
+
+//VIP Customer Purchases
+vipCustomer1.addPurchase(500);
+vipCustomer1.addPurchase(300);
+
+//Console.log
+console.log(vipCustomer1.details())
