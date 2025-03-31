@@ -76,10 +76,30 @@ class VIPCustomer extends Customer {
 }
 //VIP Customer
 const vipCustomer1 = new VIPCustomer("Thomas Jefferson", "third_president@email.com", "Platinum");
+const vipCustomer2 = new VIPCustomer("James Madison", "fourth_president@email.com", "Gold");
 
 //VIP Customer Purchases
 vipCustomer1.addPurchase(500);
 vipCustomer1.addPurchase(300);
+vipCustomer2.addPurchase(400);
+vipCustomer2.addPurchase(200);
 
 //Console.log
 console.log(vipCustomer1.details())
+console.log(vipCustomer2.details())
+
+//Task 4
+const allCustomers = [customer1, customer2, vipCustomer1, vipCustomer2];
+
+const totalRevenue = allCustomers.reduce((total, customer) => total + customer.totalSpent(), 0);
+
+const highSpendingCustomers = allCustomers.filter(customer => customer.totalSpent() > 500);
+
+const customerSummary = allCustomers.map(customer => ({
+    name: customer.name,
+    totalSpent: customer.totalSpent()
+}));
+
+console.log(`Total revenue: $${totalRevenue}`);
+console.log("High-spending customers:", highSpendingCustomers.map(c => c.name));
+console.log("Customer Summary:", customerSummary)
